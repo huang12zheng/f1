@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 class GlobalState implements Cloneable<GlobalState> {
   // @override
-  Color themeColor;
+  Color themeColor=Colors.blue;
+  String home = 'todolist';
+  String title = 'school';
 
   // @override
   GlobalState clone() {

@@ -1,3 +1,4 @@
+import 'package:f1/global/store.dart';
 import 'package:flutter/material.dart';
 
 import 'route/index.dart';
@@ -7,15 +8,11 @@ import 'route/index.dart';
 
 Widget createApp() {
   
-  return MaterialApp(
-    title: 'School',
-    debugShowCheckedModeBanner: false,
-    theme: ThemeData(primarySwatch: Colors.blue),
-    // home: routes.buildPage('todo_list'.null),
-    onGenerateRoute: (RouteSettings settings) {
-      return MaterialPageRoute<Object>(builder: (BuildContext context){
-        return routes.buildPage(settings.name, settings.arguments);
-      });
-    },
+    return MaterialApp(
+      title: getState().title,
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: getState().themeColor),
+      home: routes.buildPage( getState().home, null),
+      onGenerateRoute: generateRoute,
   );
 }
