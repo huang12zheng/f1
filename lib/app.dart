@@ -1,11 +1,21 @@
-// Page<T, dynamic> pageConfiguration<T extends 
 import 'package:flutter/material.dart';
 
+import 'route/index.dart';
+
+
+// Page<T, dynamic> pageConfiguration<T extends 
+
 Widget createApp() {
-  final AbstractRoutes = routes = HybridRoutes(routes:<AbstractRoutes>[
-    PageRoutes(pages:<String, Page<Object,dynamic>>{
-      'todo_list': pageConfiguration(ToDoListPage()),
-      'todo_edit': pageConfiguration(ToDoListPage()),
-    }),
-  ]);
+  
+  return MaterialApp(
+    title: 'School',
+    debugShowCheckedModeBanner: false,
+    theme: ThemeData(primarySwatch: Colors.blue),
+    // home: routes.buildPage('todo_list'.null),
+    onGenerateRoute: (RouteSettings settings) {
+      return MaterialPageRoute<Object>(builder: (BuildContext context){
+        return routes.buildPage(settings.name, settings.arguments);
+      });
+    },
+  );
 }
