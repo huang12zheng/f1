@@ -1,14 +1,14 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:flutter/material.dart';
+import 'user_info/state.dart';
+export 'user_info/state.dart';
 
 class GlobalState implements Cloneable<GlobalState> {
-  // @override
-  Color themeColor=Colors.blue;
-  String home = 'todolist';
-  String title = 'school';
 
-  // @override
+  UserInfoState userInfo;
+
   GlobalState clone() {
-    return GlobalState();
+    return GlobalState()
+      ..userInfo=userInfo
+    ;
   }
 }

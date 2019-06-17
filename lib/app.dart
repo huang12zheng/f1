@@ -9,10 +9,10 @@ import 'route/index.dart';
 Widget createApp() {
   
     return MaterialApp(
-      title: getState().title,
+      title: config().title,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: getState().themeColor),
-      home: routes.buildPage( getState().home, null),
+      theme: ThemeData(primarySwatch: config().themeColor),
+      home: routes.buildPage( config().home, null),
       onGenerateRoute: generateRoute,
   );
 }
