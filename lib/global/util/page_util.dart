@@ -2,8 +2,7 @@ import 'package:fish_redux/fish_redux.dart';
 
 import '../state.dart';
 import '../store.dart';
-// Cloneable<T> would be error
-Page<T,dynamic> pageConfiguration<T extends GlobalState>(Page<T,dynamic> page)
+Page<T,dynamic> pageConfiguration<T extends GlobalBaseState<T>>(Page<T,dynamic> page)
 {
   Function updateConfig =(T pageState, GlobalState appState)=>
     pageState.userInfo == appState.userInfo ? pageState :

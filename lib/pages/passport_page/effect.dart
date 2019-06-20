@@ -12,12 +12,7 @@ Effect<PassportState> buildEffect() {
 
 void _onSelectButton(Action action, Context<PassportState> ctx) async {
   final PassportState newState = ctx.state.clone();
-  // payload is id
-  // Future
-  // print('switch to ${action.payload}'); switch to 0
-  // print(newState.pageController.page);  1.0
   await newState.pageController.animateToPage(action.payload,
         duration: Duration(milliseconds: 500), curve: Curves.decelerate);
-  // print(newState.pageController.page);  0.0
   ctx.dispatch(PassportActionCreator.select(newState));
 }

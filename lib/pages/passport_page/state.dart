@@ -1,9 +1,10 @@
+import 'package:f1/global/state.dart';
 import 'package:f1/pages/passport_page/menu_bar_component/state.dart';
 import 'package:f1/pages/passport_page/menu_button_component/state.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 
-class PassportState implements Cloneable<PassportState> {
+class PassportState implements GlobalBaseState<PassportState> {
 
   String access;
   String verify;
@@ -11,6 +12,8 @@ class PassportState implements Cloneable<PassportState> {
   PageController pageController;  
   MenuButtonState left;
   MenuButtonState right;
+
+  UserInfoState userInfo;
 
   @override
   PassportState clone() {
@@ -20,6 +23,7 @@ class PassportState implements Cloneable<PassportState> {
       ..left=left.clone()
       ..right=right.clone()
       ..pageController=pageController
+      ..userInfo=userInfo
     ;
   }
 }
