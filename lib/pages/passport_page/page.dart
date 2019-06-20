@@ -19,6 +19,9 @@ class PassportPage extends Page<PassportState, Map<String, dynamic>> {
                   'menu': MenuBarConnector()+MenuBarComponent(),
                 }),
             middleware: <Middleware<PassportState>>[
-            ],);
+              logMiddleware(tag: 'PassportState'),
+            ],
+            // wrapper:keepAliveWrapper
+            );
 
 }

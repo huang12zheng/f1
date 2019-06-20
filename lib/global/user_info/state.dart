@@ -10,8 +10,8 @@ class UserInfoState implements Cloneable<UserInfoState> {
       ..config = config
     ;
   }
-}
 
-UserInfoState initState(Map<String, dynamic> args) {
-  return UserInfoState();
+  UserInfoState({this.config}){
+    config??=ConfigState();
+  }
 }

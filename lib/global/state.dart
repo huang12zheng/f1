@@ -12,3 +12,10 @@ class GlobalState implements Cloneable<GlobalState> {
     ;
   }
 }
+
+GlobalState initState(){
+  
+  return GlobalState()
+    ..userInfo=UserInfoState()
+    ;
+}

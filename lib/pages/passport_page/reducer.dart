@@ -1,4 +1,3 @@
-import 'package:f1/pages/passport_page/menu_button_component/action.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 
@@ -8,32 +7,29 @@ import 'state.dart';
 Reducer<PassportState> buildReducer() {
   return asReducer(
     <Object, Reducer<PassportState>>{
-      // PassportAction.setLogin:  _setLogin,
-      // PassportAction.setSignUp: _setSignUp,
-      PassportAction.select: selectMenuButton,
+      PassportAction.selectLogin:  _selectLogin,
+      PassportAction.selectSignUp: _selectSignUp,
+      PassportAction.select: _selectMenuButton,
     },
   );
 }
 
-// PassportState _setLogin(PassportState state, Action action) {
-//   final PassportState newState = state.clone();
-//   return newState
-//     ..right=Colors.white
-//     ..left =Colors.black;
-// }
-
-// PassportState _setSignUp(PassportState state, Action action) {
-//   final PassportState newState = state.clone();
-//   return newState
-//     ..right=Colors.black
-//     ..left =Colors.white;
-// }
-
-PassportState selectMenuButton(PassportState state, Action action) {
+PassportState _selectLogin(PassportState state, Action action) {
   final PassportState newState = state.clone();
-  // payload is id
-  // Future
-  newState.pageController.animateToPage(action.payload,
-        duration: Duration(milliseconds: 500), curve: Curves.decelerate);
-  return newState;
+  return newState
+    ..left.color =Colors.black
+    ..right.color=Colors.white
+    ;
+}
+
+PassportState _selectSignUp(PassportState state, Action action) {
+  final PassportState newState = state.clone();
+  return newState
+    ..right.color=Colors.black
+    ..left.color =Colors.white
+    ;
+}
+
+PassportState _selectMenuButton(PassportState state, Action action) {
+  return action.payload;
 }

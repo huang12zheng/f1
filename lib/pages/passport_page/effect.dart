@@ -14,6 +14,7 @@ void _onSelectButton(Action action, Context<PassportState> ctx) async {
   final PassportState newState = ctx.state.clone();
   // payload is id
   // Future
+  print('switch to ${action.payload}');
   await newState.pageController.animateToPage(action.payload,
         duration: Duration(milliseconds: 500), curve: Curves.decelerate);
   ctx.dispatch(PassportActionCreator.select(newState));

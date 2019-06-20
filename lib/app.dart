@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 
 import 'route/index.dart';
 
-
-// Page<T, dynamic> pageConfiguration<T extends 
-
 Widget createApp() {
   
     return MaterialApp(

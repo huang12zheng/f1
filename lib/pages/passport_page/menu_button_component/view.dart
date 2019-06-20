@@ -5,12 +5,11 @@ import 'action.dart';
 import 'state.dart';
 
 Widget buildView(MenuButtonState state, Dispatch dispatch, ViewService viewService) {
-  return Expanded(
-    child: FlatButton(
+  return FlatButton(
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       /// To Work By Parent 
-      onPressed: dispatch(MenuButtonActionCreator.onSelect(state.uniqueId)),
+      onPressed: ()=>dispatch(MenuButtonActionCreator.onSelect(state.uniqueId)),
       // _onSignInButtonPress,
       child: Text(
         state.title,
@@ -19,6 +18,5 @@ Widget buildView(MenuButtonState state, Dispatch dispatch, ViewService viewServi
             fontSize: 16.0,
             fontFamily: "WorkSansSemiBold"),
       ),
-    ),
   );
 }

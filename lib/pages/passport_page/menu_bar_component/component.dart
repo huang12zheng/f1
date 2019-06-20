@@ -13,6 +13,6 @@ class MenuBarComponent extends Component<MenuBarState> {
         'left': LeftConnector()+  MenuButtonComponent(),
         'right': RightConnector()+MenuButtonComponent()
       }
-    )
+    ),
     );
 }

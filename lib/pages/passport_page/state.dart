@@ -8,10 +8,7 @@ class PassportState implements Cloneable<PassportState> {
   String access;
   String verify;
 
-  PageController pageController;
-  int pageCount=0;
-  // Color left;
-  // Color right;
+  PageController pageController;  
   MenuButtonState left;
   MenuButtonState right;
 
@@ -20,12 +17,21 @@ class PassportState implements Cloneable<PassportState> {
     return PassportState()
       ..access=access
       ..verify=verify
+      ..left=left
+      ..right=right
+      ..pageController=pageController
     ;
   }
 }
 
 PassportState initState(Map<String, dynamic> args) {
-  return PassportState();
+  MenuButtonState left = MenuButtonState()..title='Existing'..color=Colors.black..uniqueId=0;
+  MenuButtonState right = MenuButtonState()..title='New'..color=Colors.white..uniqueId=1;
+  return PassportState()
+    ..left=left
+    ..right=right
+    ..pageController=PageController()
+  ;
 }
 
 class MenuBarConnector extends ConnOp<PassportState,MenuBarState> {
@@ -33,6 +39,8 @@ class MenuBarConnector extends ConnOp<PassportState,MenuBarState> {
   MenuBarState get(PassportState state){
     return MenuBarState()
       ..left=state.left
-      ..right=state.right;
+      ..right=state.right
+      ..pageController=state.pageController
+      ;
   }
 }
