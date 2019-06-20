@@ -6,8 +6,7 @@ class MenuButtonState implements Cloneable<MenuButtonState> {
   Color color;
   String title;
 
-  MenuButtonState({this.uniqueId, this.title, this.color}) {
-  }
+  MenuButtonState({this.uniqueId, this.title, this.color});
 
   @override
   MenuButtonState clone() {

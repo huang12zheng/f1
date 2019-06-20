@@ -17,8 +17,8 @@ class PassportState implements Cloneable<PassportState> {
     return PassportState()
       ..access=access
       ..verify=verify
-      ..left=left
-      ..right=right
+      ..left=left.clone()
+      ..right=right.clone()
       ..pageController=pageController
     ;
   }

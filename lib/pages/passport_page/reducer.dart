@@ -24,6 +24,9 @@ PassportState _selectLogin(PassportState state, Action action) {
 
 PassportState _selectSignUp(PassportState state, Action action) {
   final PassportState newState = state.clone();
+    // ..right.color=Colors.black
+    // ..left.color =Colors.white
+    // would change state and newState. it should use clone.
   return newState
     ..right.color=Colors.black
     ..left.color =Colors.white
