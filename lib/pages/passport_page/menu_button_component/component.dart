@@ -10,6 +10,6 @@ class MenuButtonComponent extends Component<MenuButtonState> {
       : super(
         view: buildView,
         reducer: buildReducer(),
-        // effect: buildEffect(),
+        effect: buildEffect(),
       );
 }
