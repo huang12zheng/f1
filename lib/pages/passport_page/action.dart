@@ -1,11 +1,13 @@
 import 'package:f1/pages/passport_page/state.dart';
 import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter/material.dart';
 
 
 enum PassportAction { 
   changeToLoginTheme, changeToSignupTheme,
   selectNew, selectExisting,
   select,
+  onChangeMenuTheme
 }
 
 class PassportActionCreator {

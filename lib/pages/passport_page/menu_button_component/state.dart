@@ -17,6 +17,6 @@ class MenuButtonState implements Cloneable<MenuButtonState> {
   }
   @override
   String toString() {
-    return 'MenuButtonState{uniqueId: $uniqueId, title: $title}';
+    return 'MenuButtonState{uniqueId: $uniqueId, title: $title color:$color }';
   }
 }

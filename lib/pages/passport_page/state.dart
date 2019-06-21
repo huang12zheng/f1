@@ -23,11 +23,17 @@ class PassportState implements GlobalBaseState<PassportState> {
     return PassportState()
       ..login=login
       ..signup=signup
-      ..left=left.clone()
-      ..right=right.clone()
+      ..left=left
+      ..right=right
       ..pageController=pageController
       ..userInfo=userInfo
     ;
+  }
+
+  @override
+  String toString() {
+    // TODO: implement toString
+    return pageController.toString()+left.toString()+"  "+right.toString();
   }
 }
 

@@ -7,6 +7,7 @@ import 'state.dart';
 Effect<PassportState> buildEffect() {
   return combineEffects(<Object, Effect<PassportState>>{
     MenuButtonAction.onSelect: _onSelectButton,
+    PassportAction.onChangeMenuTheme:onChangeMenuTheme,
   });
 }
 
@@ -15,4 +16,11 @@ void _onSelectButton(Action action, Context<PassportState> ctx) async {
   await newState.pageController.animateToPage(action.payload,
         duration: Duration(milliseconds: 500), curve: Curves.decelerate);
   ctx.dispatch(PassportActionCreator.select(newState));
+}
+
+void onChangeMenuTheme(Action action, Context<PassportState> ctx) async {
+  final PassportState newState = ctx.state.clone();
+  await newState.pageController.animateToPage(action.payload,
+        duration: Duration(milliseconds: 500), curve: Curves.decelerate);
+  
 }
