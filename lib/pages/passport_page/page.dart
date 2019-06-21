@@ -1,3 +1,4 @@
+import 'package:f1/pages/passport_page/login_component/component.dart';
 import 'package:f1/pages/passport_page/menu_bar_component/component.dart';
 import 'package:fish_redux/fish_redux.dart';
 
@@ -17,6 +18,7 @@ class PassportPage extends Page<PassportState, Map<String, dynamic>> {
                 adapter: null,
                 slots: <String, Dependent<PassportState>>{
                   'menu': MenuBarConnector()+MenuBarComponent(),
+                  'login': LoginConnector()+LoginComponent(),
                 }),
             middleware: <Middleware<PassportState>>[
               logMiddleware(tag: 'PassportState'),

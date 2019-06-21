@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'action.dart';
 import 'state.dart';
+import 'style/theme.dart' as Theme;
 
 typedef BuildView = Widget Function(PassportState state, Dispatch dispatch, ViewService viewService);
 
@@ -10,26 +11,43 @@ Widget buildView(PassportState state, Dispatch dispatch, ViewService viewService
   BuildContext context = viewService.context;
 
   return Scaffold(
-    appBar: AppBar(),
-    body: Container(
-      child: _bodyView(state,dispatch,viewService),
-      width:  getWidth(context),
-      height: getHeidht(context),
-      // decoration: bodyBoxDecoration(),
+    // appBar: AppBar(),
+    body: SingleChildScrollView(
+      child:Container(
+        child: _bodyView(state,dispatch,viewService),
+        width:  getWidth(context),
+        height: getHeidht(context),
+        decoration: bodyBoxDecoration(),
+      )
     )
   );
 
   
 }
 
+bodyBoxDecoration(){
+  return BoxDecoration(
+    gradient: new LinearGradient(
+        colors: [
+          Theme.Colors.loginGradientStart,
+          Theme.Colors.loginGradientEnd
+        ],
+        begin: const FractionalOffset(0.0, 0.0),
+        end: const FractionalOffset(1.0, 1.0),
+        stops: [0.0, 1.0],
+        tileMode: TileMode.clamp),
+  );
+}
+
 Column _bodyView(PassportState state, Dispatch dispatch, ViewService viewService){
-  return Column(
-    mainAxisSize: MainAxisSize.max,
-    children: <Widget>[
-      // _loginImage(),
-      viewService.buildComponent('menu'),
-      _pageController(state,dispatch,viewService),
-    ],
+  return 
+    Column(
+      mainAxisSize: MainAxisSize.max,
+      children: <Widget>[
+        // _loginImage(),
+        viewService.buildComponent('menu'),
+        _pageController(state,dispatch,viewService),
+      ],
   );
 }
 
@@ -51,13 +69,13 @@ _pageController(PassportState state, Dispatch dispatch, ViewService viewService)
       children: <Widget>[
         new ConstrainedBox(
           constraints: const BoxConstraints.expand(),
-          child: Text('login')
-          // child: viewService.buildComponent('login'),
+          // child: Text('login')
+          child: viewService.buildComponent('login'),
         ),
         new ConstrainedBox(
           constraints: const BoxConstraints.expand(),
           child: Text('signup')
-          // child: viewService.buildComponent('signUp')
+        //   // child: viewService.buildComponent('signUp')
         ),
       ],
     ),

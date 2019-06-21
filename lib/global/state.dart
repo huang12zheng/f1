@@ -1,5 +1,4 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:flutter/material.dart';
 import 'user_info/state.dart';
 export 'user_info/state.dart';
 

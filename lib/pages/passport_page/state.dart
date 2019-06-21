@@ -1,4 +1,5 @@
 import 'package:f1/global/state.dart';
+import 'package:f1/pages/passport_page/login_component/state.dart';
 import 'package:f1/pages/passport_page/menu_bar_component/state.dart';
 import 'package:f1/pages/passport_page/menu_button_component/state.dart';
 import 'package:fish_redux/fish_redux.dart';
@@ -46,5 +47,19 @@ class MenuBarConnector extends ConnOp<PassportState,MenuBarState> {
       ..right=state.right
       ..pageController=state.pageController
       ;
+  }
+}
+
+class LoginConnector extends ConnOp<PassportState,LoginState> {
+  @override
+  LoginState get(PassportState state) {
+    // TODO: implement get
+    return LoginState();
+    // return ;
+  }
+  @override
+  void set(PassportState state,LoginState subState){
+    state.access=subState.accessController.text;
+    state.verify=subState.verifyController.text;
   }
 }
