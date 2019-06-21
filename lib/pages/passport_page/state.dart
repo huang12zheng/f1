@@ -38,6 +38,8 @@ PassportState initState(Map<String, dynamic> args) {
     ..left=left
     ..right=right
     ..pageController=PageController()
+    ..login=LoginState()
+    ..signup=SignupState()
   ;
 }
 
@@ -55,7 +57,7 @@ class MenuBarConnector extends ConnOp<PassportState,MenuBarState> {
 class LoginConnector extends ConnOp<PassportState,LoginState> {
   @override
   LoginState get(PassportState state) {
-    return state.login??LoginState();
+    return state.login;
   }
   @override
   void set(PassportState state,LoginState subState){
@@ -65,7 +67,7 @@ class LoginConnector extends ConnOp<PassportState,LoginState> {
 class SignupConnector extends ConnOp<PassportState,SignupState> {
   @override
   SignupState get(PassportState state) {
-    return state.signup??SignupState();
+    return state.signup;
   }
   @override
   void set(PassportState state,SignupState subState){
