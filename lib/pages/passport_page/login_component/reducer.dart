@@ -6,12 +6,12 @@ import 'state.dart';
 Reducer<LoginState> buildReducer() {
   return asReducer(
     <Object, Reducer<LoginState>>{
-      LoginAction.toggleLogin: toggleLogin,
+      LoginAction.toggleLoginObscure: toggleLoginObscure,
     },
   );
 }
 
-LoginState toggleLogin(LoginState state, Action action) {
+LoginState toggleLoginObscure(LoginState state, Action action) {
   final LoginState newState = state.clone();
-  return newState..obscureTextAccess=!newState.obscureTextAccess;
+  return newState..obscureTextVerify=!newState.obscureTextVerify;
 }

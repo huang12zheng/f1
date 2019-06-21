@@ -5,10 +5,12 @@ import 'package:f1/pages/passport_page/menu_button_component/state.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 
+import 'signup_component/state.dart';
+
 class PassportState implements GlobalBaseState<PassportState> {
 
-  String access;
-  String verify;
+  LoginState login;
+  SignupState signup;
 
   PageController pageController;  
   MenuButtonState left;
@@ -19,8 +21,8 @@ class PassportState implements GlobalBaseState<PassportState> {
   @override
   PassportState clone() {
     return PassportState()
-      ..access=access
-      ..verify=verify
+      ..login=login
+      ..signup=signup
       ..left=left.clone()
       ..right=right.clone()
       ..pageController=pageController
@@ -53,13 +55,20 @@ class MenuBarConnector extends ConnOp<PassportState,MenuBarState> {
 class LoginConnector extends ConnOp<PassportState,LoginState> {
   @override
   LoginState get(PassportState state) {
-    // TODO: implement get
-    return LoginState();
-    // return ;
+    return state.login??LoginState();
   }
   @override
   void set(PassportState state,LoginState subState){
-    state.access=subState.accessController.text;
-    state.verify=subState.verifyController.text;
+    state.login = subState;
+  }
+}
+class SignupConnector extends ConnOp<PassportState,SignupState> {
+  @override
+  SignupState get(PassportState state) {
+    return state.signup??SignupState();
+  }
+  @override
+  void set(PassportState state,SignupState subState){
+    state.signup = subState;
   }
 }

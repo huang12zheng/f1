@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'action.dart';
 import 'state.dart';
-import 'style/theme.dart' as Theme;
+import '../style/theme.dart' as Theme;
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
@@ -30,7 +30,7 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
             size: 22.0,
           ),
           // hintText: "Email Address",
-          hintText: "Login",
+          hintText: "Account",
           hintStyle: TextStyle(fontFamily: "WorkSansSemiBold", fontSize: 17.0)),
       ),
     );
@@ -43,7 +43,7 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
       child: TextField(
         focusNode: state.focusNodeVerify,
         controller: state.verifyController,
-        obscureText: state.obscureTextAccess,
+        obscureText: state.obscureTextVerify,
         style: TextStyle(
             fontFamily: "WorkSansSemiBold",
             fontSize: 16.0,
@@ -59,10 +59,9 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
           hintStyle: TextStyle(
               fontFamily: "WorkSansSemiBold", fontSize: 17.0),
           suffixIcon: GestureDetector(
-            onTap: dispatch(LoginActionCreator.toggleLogin()),
-            // _toggleLogin,
+            onTap: ()=>dispatch(LoginActionCreator.toggleLoginObscure()),
             child: Icon(
-              state.obscureTextAccess
+              state.obscureTextVerify
                   ? FontAwesomeIcons.eye
                   : FontAwesomeIcons.eyeSlash,
               size: 15.0,

@@ -11,7 +11,7 @@ Widget buildView(PassportState state, Dispatch dispatch, ViewService viewService
   BuildContext context = viewService.context;
 
   return Scaffold(
-    // appBar: AppBar(),
+    appBar: AppBar(),
     body: SingleChildScrollView(
       child:Container(
         child: _bodyView(state,dispatch,viewService),
@@ -63,27 +63,19 @@ _pageController(PassportState state, Dispatch dispatch, ViewService viewService)
     child: PageView(
       controller: state.pageController,
       onPageChanged: (i) {
-        if (i == 0) return dispatch(PassportActionCreator.selectLogin() );
-        if (i == 1) return dispatch(PassportActionCreator.selectSignUp());
+        if (i == 0) return dispatch(PassportActionCreator.changeToLoginTheme() );
+        if (i == 1) return dispatch(PassportActionCreator.changeToSignupTheme());
       },
       children: <Widget>[
         new ConstrainedBox(
           constraints: const BoxConstraints.expand(),
-          // child: Text('login')
           child: viewService.buildComponent('login'),
         ),
         new ConstrainedBox(
           constraints: const BoxConstraints.expand(),
-          child: Text('signup')
-        //   // child: viewService.buildComponent('signUp')
+          child: viewService.buildComponent('signup'),
         ),
       ],
     ),
   );
 }
-
-// Widget _loginImage()=> Padding(
-//   padding: EdgeInsets.only(top:75.0),
-//   // TODO LoginImage
-//   child: Container()
-// );

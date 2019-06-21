@@ -1,9 +1,9 @@
 import 'package:fish_redux/fish_redux.dart';
 
-enum LoginAction { toggleLogin }
+enum LoginAction { toggleLoginObscure }
 
 class LoginActionCreator {
-  static Action toggleLogin() {
-    return const Action(LoginAction.toggleLogin);
+  static Action toggleLoginObscure() {
+    return const Action(LoginAction.toggleLoginObscure);
   }
 }

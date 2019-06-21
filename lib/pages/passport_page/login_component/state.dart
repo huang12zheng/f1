@@ -9,14 +9,12 @@ class LoginState implements Cloneable<LoginState> {
   TextEditingController accessController=TextEditingController();
   TextEditingController verifyController=TextEditingController();
 
-  bool obscureTextAccess=true;
+  bool obscureTextVerify=true;
 
   @override
   LoginState clone() {
     return LoginState()
-      ..obscureTextAccess=obscureTextAccess
-      // ..focusNodeAccess=focusNodeAccess
-      // ..focusNodeVerify=focusNodeVerify
+      ..obscureTextVerify=obscureTextVerify
       ..accessController=accessController
       ..verifyController=verifyController
     ;

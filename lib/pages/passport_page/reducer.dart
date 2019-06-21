@@ -7,14 +7,14 @@ import 'state.dart';
 Reducer<PassportState> buildReducer() {
   return asReducer(
     <Object, Reducer<PassportState>>{
-      PassportAction.selectLogin:  _selectLogin,
-      PassportAction.selectSignUp: _selectSignUp,
+      PassportAction.changeToLoginTheme:  _changeToLoginTheme,
+      PassportAction.changeToSignupTheme: _changeToSignupTheme,
       PassportAction.select: _selectMenuButton,
     },
   );
 }
 
-PassportState _selectLogin(PassportState state, Action action) {
+PassportState _changeToLoginTheme(PassportState state, Action action) {
   final PassportState newState = state.clone();
   return newState
     ..left.color =Colors.black
@@ -22,11 +22,8 @@ PassportState _selectLogin(PassportState state, Action action) {
     ;
 }
 
-PassportState _selectSignUp(PassportState state, Action action) {
+PassportState _changeToSignupTheme(PassportState state, Action action) {
   final PassportState newState = state.clone();
-    // ..right.color=Colors.black
-    // ..left.color =Colors.white
-    // would change state and newState. it should use clone.
   return newState
     ..right.color=Colors.black
     ..left.color =Colors.white
