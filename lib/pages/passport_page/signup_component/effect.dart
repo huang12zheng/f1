@@ -1,5 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'action.dart';
+// import 'action.dart';
 import 'state.dart';
 
 Effect<SignupState> buildEffect() {
@@ -8,5 +8,5 @@ Effect<SignupState> buildEffect() {
   });
 }
 
-void _onAction(Action action, Context<SignupState> ctx) {
-}
+// void _onAction(Action action, Context<SignupState> ctx) {
+// }

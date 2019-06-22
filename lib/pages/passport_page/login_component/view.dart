@@ -18,13 +18,11 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
         focusNode: state.focusNodeAccess,
         controller: state.accessController,
         autofocus: true,
-        //TODO
-        keyboardType: TextInputType.emailAddress,
+        keyboardType: TextInputType.text,
         style: TextStyle(fontFamily: "WorkSansSemiBold",fontSize: 16.0,color: Colors.black),
         decoration: InputDecoration(
           border: InputBorder.none,
           icon: Icon(
-            //TODO
             FontAwesomeIcons.userPlus,
             color: Colors.black,
             size: 22.0,
