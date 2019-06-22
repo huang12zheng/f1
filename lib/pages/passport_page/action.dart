@@ -7,7 +7,6 @@ enum PassportAction {
   changeToLoginTheme, changeToSignupTheme,
   selectNew, selectExisting,
   select,
-  onChangeMenuTheme
 }
 
 class PassportActionCreator {

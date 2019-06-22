@@ -62,10 +62,6 @@ _pageController(PassportState state, Dispatch dispatch, ViewService viewService)
     flex: 2,
     child: PageView(
       controller: state.pageController,
-      onPageChanged: (i) {
-        if (i == 0) return dispatch(PassportActionCreator.changeToLoginTheme() );
-        if (i == 1) return dispatch(PassportActionCreator.changeToSignupTheme());
-      },
       children: <Widget>[
         new ConstrainedBox(
           constraints: const BoxConstraints.expand(),

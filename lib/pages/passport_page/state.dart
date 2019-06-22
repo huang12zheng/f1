@@ -58,6 +58,10 @@ class MenuBarConnector extends ConnOp<PassportState,MenuBarState> {
       ..pageController=state.pageController
       ;
   }
+  void set(PassportState state,MenuBarState subState){
+    state..left=subState.left
+        ..right=subState.right;
+  }
 }
 
 class LoginConnector extends ConnOp<PassportState,LoginState> {

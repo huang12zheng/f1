@@ -19,12 +19,19 @@ class LeftConnector extends ConnOp<MenuBarState,MenuButtonState>{
   get(MenuBarState state){
     return state.left;
   }
-  // set()
+  @override
+  set(MenuBarState state,MenuButtonState subState){
+    state.left=subState;
+  }
 }
 
 class RightConnector extends ConnOp<MenuBarState,MenuButtonState>{
   @override
   get(MenuBarState state){
     return state.right;
+  }
+  @override
+  set(MenuBarState state,MenuButtonState subState){
+    state.right=subState;
   }
 }
