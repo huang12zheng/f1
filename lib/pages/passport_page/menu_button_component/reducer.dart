@@ -15,6 +15,5 @@ Reducer<MenuButtonState> buildReducer() {
 MenuButtonState changeTheme(MenuButtonState state, Action action) {
   final MenuButtonState newState = state.clone();
   newState.color=state.uniqueId==action.payload?Colors.black:Colors.white;
-  print(newState);
   return newState;
 }

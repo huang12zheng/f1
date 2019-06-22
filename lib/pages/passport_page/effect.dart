@@ -14,6 +14,7 @@ void onSelect(Action action, Context<PassportState> ctx) async {
   final PassportState newState = ctx.state.clone();
   await newState.pageController.animateToPage(action.payload,
         duration: Duration(milliseconds: 500), curve: Curves.decelerate);
+  // print("warning: MenuButtonAction.onSelect has not been used.")
   ctx.dispatch(PassportActionCreator.select(newState));
   ctx.dispatch(MenuButtonActionCreator.onChangeTheme(action.payload) );
 }

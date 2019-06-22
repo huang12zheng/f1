@@ -14,12 +14,10 @@ Reducer<SignupState> buildReducer() {
 
 SignupState toggleSignup(SignupState state, Action action) {
   final SignupState newState = state.clone();
-  print(newState.signupFlag);
   return newState..signupFlag=!newState.signupFlag;
 }
 
 SignupState toggleConfirm(SignupState state, Action action) {
   final SignupState newState = state.clone();
-  print(newState.signupFlag);
   return newState..confirmFlag=!newState.confirmFlag;
 }
