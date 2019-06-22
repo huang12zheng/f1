@@ -32,8 +32,7 @@ class PassportState implements GlobalBaseState<PassportState> {
 
   @override
   String toString() {
-    // TODO: implement toString
-    return "page:${pageController.page}  ${left.toString()}   ${right.toString()}";
+    return "hase:${this.hashCode} page:${pageController.page}  ${left.toString()}   ${right.toString()}";
   }
 }
 
