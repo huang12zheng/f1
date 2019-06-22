@@ -7,6 +7,7 @@ enum PassportAction {
   changeToLoginTheme, changeToSignupTheme,
   selectNew, selectExisting,
   select,
+  changeMenuTheme
 }
 
 class PassportActionCreator {
@@ -19,5 +20,7 @@ class PassportActionCreator {
   static Action select(PassportState state) {
     return Action(PassportAction.select,payload: state);
   }
-  
+  static Action changeMenuTheme(num id) {
+    return Action(PassportAction.changeMenuTheme,payload: id);
+  }
 }

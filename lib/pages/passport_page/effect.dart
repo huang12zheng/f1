@@ -16,5 +16,6 @@ void onSelect(Action action, Context<PassportState> ctx) async {
         duration: Duration(milliseconds: 500), curve: Curves.decelerate);
   // print("warning: MenuButtonAction.onSelect has not been used.")
   ctx.dispatch(PassportActionCreator.select(newState));
-  ctx.dispatch(MenuButtonActionCreator.onChangeTheme(action.payload) );
+  // ctx.dispatch(MenuButtonActionCreator.onChangeTheme(action.payload) );
+  ctx.dispatch(PassportActionCreator.changeMenuTheme(action.payload) );
 }
