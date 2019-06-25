@@ -232,7 +232,7 @@ Widget buildView(SignupState state, Dispatch dispatch, ViewService viewService) 
                             fontFamily: "WorkSansBold"),
                       ),
                     ),
-                    onPressed: () =>{}
+                    onPressed: () => dispatch(SignupActionCreator.onSignup()),
                     // showInSnackBar("SignUp button pressed")
                     ),
               ),

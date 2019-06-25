@@ -1,7 +1,9 @@
 import 'package:fish_redux/fish_redux.dart';
 
-enum SignupAction { toggleSignup,toggleConfirm }
-
+enum SignupAction {
+  toggleSignup,toggleConfirm,
+  onSignup
+}
 class SignupActionCreator {
   static Action toggleSignup() {
     return const Action(SignupAction.toggleSignup);
@@ -9,5 +11,9 @@ class SignupActionCreator {
 
   static Action toggleConfirm() {
     return const Action(SignupAction.toggleConfirm);
+  }
+
+  static Action onSignup(){
+    return const Action(SignupAction.onSignup);
   }
 }

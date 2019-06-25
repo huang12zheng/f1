@@ -1,4 +1,3 @@
-import 'package:f1/widget/snack_bar.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 
@@ -87,7 +86,8 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
               fontFamily: "WorkSansBold"),
         ),
       ),
-      onPressed: () => print('snackBar'),
+      onPressed: () => dispatch(LoginActionCreator.onLogin()),
+      // print('snackBar'),
       // showInSnackBar("Login button pressed"),
     );
   }
@@ -153,19 +153,38 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
               ),
             ],
           ),
-          Padding(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(top: 10.0),
+                child: FlatButton(
+                  //TODO
+                    onPressed: () {},
+                    child: Text(
+                      "Forgot Password?",
+                      style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Colors.white,
+                          fontSize: 16.0,
+                          fontFamily: "WorkSansMedium"),
+                    )),
+              ),
+            Padding(
             padding: EdgeInsets.only(top: 10.0),
             child: FlatButton(
+              //TODO
                 onPressed: () {},
                 child: Text(
-                  "Forgot Password?",
+                  "Send SMS",
                   style: TextStyle(
                       decoration: TextDecoration.underline,
                       color: Colors.white,
                       fontSize: 16.0,
                       fontFamily: "WorkSansMedium"),
                 )),
-          ),
+            ),
+          ]),
           Padding(
             padding: EdgeInsets.only(top: 10.0),
             child: Row(

@@ -23,7 +23,7 @@ class PassportPage extends Page<PassportState, Map<String, dynamic>> {
                   'signup': SignupConnector()+SignupComponent(),
                 }),
             middleware: <Middleware<PassportState>>[
-              logMiddleware(tag: 'PassportState',monitor: (value)=>value.toString()),
+              // logMiddleware(tag: 'PassportState',monitor: (value)=>value.toString()),
             ],
             // wrapper:keepAliveWrapper
             );
