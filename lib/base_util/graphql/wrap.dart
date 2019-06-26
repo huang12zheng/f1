@@ -2,7 +2,7 @@ import 'package:graphql_util/graphql_util.dart';
 
 import 'graphql.dart';
 
-option(String document,Map args){
+option(String document,dynamic args){
   // if (args=={} || args == null) return a;
   return QueryOptions(
       document: document,
@@ -23,6 +23,6 @@ graphqlWrapper(Future<QueryResult> request)async{
 // query(QueryOptions option){
 //   return graphqlWrapper(gClient.query(option));
 // }
-query(String document,Map args){
+query(String document,dynamic args){
   return graphqlWrapper(gClient.query(option(document,args)));
 }

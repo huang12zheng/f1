@@ -1,6 +1,7 @@
 import 'package:f1/base_util/index.dart';
 
-String loginRepositories=r'''
+loginAPI(args) {
+  String loginRepositories=r'''
 query ReadRepositories($args:UserWhereInput) 
 {
   users(where:$args){
@@ -30,11 +31,33 @@ query ReadRepositories($args:UserWhereInput)
   }
 }
 ''';
-
-loginAPI(args) {
-  // QueryOptions options = QueryOptions(
-  //   document: loginRepositories,
-  //   variables: {'args': args},
-  // );
   return query(loginRepositories,args);
 }
+
+signupCheckAPI(List<Map> args){
+  String checkRepositories=r'''
+query ReadRepositories($args:UserWhereInput) 
+{
+  userORQuery(where:$args){
+    _id
+  }
+}
+''';
+/// {"args": {"OR": [{"userName": "HZ"},{"mobile": "17682318150"}]}}
+  var argT = {"OR":args};
+  return query(checkRepositories,argT);
+}
+
+
+signupAPI(args) {
+  String signupRepositories=r'''
+query CheckRepositories($args:UserWhereInput) 
+{
+  users(where:$args){
+    _id
+}
+}
+''';
+  // return mutation(signupRepositories,args);
+}
+

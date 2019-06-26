@@ -3,6 +3,7 @@ import 'package:f1/graphql/api.dart';
 import 'package:f1/pages/passport_page/login_component/action.dart';
 import 'package:f1/pages/passport_page/menu_button_component/action.dart';
 import 'package:f1/pages/passport_page/signup_component/action.dart';
+import 'package:f1/pages/passport_page/signup_component/state.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_util/graphql_util.dart';
@@ -41,6 +42,38 @@ void onLogin(Action action, Context<PassportState> ctx) async {
   
 }
 
+void onSignup(Action action, Context<PassportState> ctx) async {
+  if (ctx.state.signup.passwordController.text!=ctx.state.signup.confirmPasswordController.text){
+    print('ps is not true');
+    return;
+  }
+  List<Map> args_L = switchExist(ctx.state.signup);
+  var response = await signupCheckAPI(args_L);
+  // Map args = switchSignup(ctx.state.signup);
+  
+  // print(args);
+  print(response);
+}
+
+switchExist(SignupState state){
+  List<Map> arg=[
+    {'userName': state.nameController.text,},
+    {'mobile': state.mobileController.text,},
+    // {'email':  state.emailController.text,},
+  ];
+  return arg;
+}
+
+switchSignup(SignupState state){
+  Map<String,String> arg={
+    'userName': state.nameController.text,
+    'mobile': state.mobileController.text,
+    'email':  state.emailController.text,
+    'password': state.passwordController.text,
+  };
+  return arg;
+}
+
 void switchAccess(String access, Map<String, String> map) {
   if (RegexUtil.isEmail(access)==true) {map['email']=access; return ;}
   if (RegexUtil.isMobileExact(access)==true) {map['mobile']=access; return;}
@@ -50,7 +83,4 @@ void switchAccess(String access, Map<String, String> map) {
 void switchVerify(String verify, Map<String, String> map) {
   if (verify.length==6 && RegExp('[0-9]+').hasMatch(verify) ) { map['SMS']=verify; return ;}
   map['password']=verify; return;
-}
-
-void onSignup(Action action, Context<PassportState> ctx) async {
 }
