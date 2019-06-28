@@ -1,6 +1,6 @@
 import 'package:graphql_util/graphql_util.dart';
 
-import 'GraphqlNormalization.dart';
+import 'cache.dart';
 import 'link_for.dart';
 
 final String graphqlEndpoint = 'http://$host:4000';
@@ -10,8 +10,9 @@ const String TOKEN = "";
 /// StartWork
 ClientUtil client = ClientBuild()
             .setLink(linkFor())
-            .setNormalization(compositData(['_id']))
-            // .setNormalization(getNormalizationByIdName("_id"))
+            .setNormalization(compositData(["id"]))
+            // .setNormalization(compositData())
+            // .setNormalization(getNormalizationByIdName("id"))
             .build();
 
 GraphQLClient gClient = client.value;

@@ -2,7 +2,7 @@
 
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-// replace with compositData(["_id"])
+// replace with compositData(["id"])
 // String objNormalization(Object node,String valueName) {
 //   // node is valild and id is exist,then, can Swith to Tag
 //   print(node);
