@@ -1,6 +1,6 @@
 import 'package:graphql_util/graphql_util.dart';
 
-import 'graphql.dart';
+import 'client.dart';
 
 Link tokenHandle() {
   if (tokenIsEmpty()) return linkHandle();

@@ -1,28 +1,42 @@
 import 'package:graphql_util/graphql_util.dart';
+import 'client.dart';
 
-import 'graphql.dart';
-
-option(String document,dynamic args){
-  // if (args=={} || args == null) return a;
-  return QueryOptions(
+query(String document,dynamic args){
+  return graphqlWrapper(gClient.query(
+    QueryOptions(
       document: document,
       variables: {'args': args},
-    );
+    )
+  ));
+}
+
+mutation(String document,dynamic args){
+  return graphqlWrapper(
+    gClient.mutate(
+      MutationOptions(
+        document: document,
+        variables: {'args': args}
+      )
+    )
+  );
 }
 
 graphqlWrapper(Future<QueryResult> request)async{
   QueryResult result = await request;
-  if (result.errors != null) return result.errors;
-  if (result.data.runtimeType == LazyCacheMap){
+  if (result.errors != null) 
+    throw result.errors;
+  if (result.data.data.toString().contains('@cache/reference')){
     // print(gClient.cache.read("5cebeafb8c5eb80009ada7ed"));
-    return result.data.values.last[0].data;
+    return result.data.values.last.map( (data) => data.data ).toList();
   }
-  return result.data.data;
+  //!! would no run by runtimeType == LazyCacheMap
+  // result.data.data is Map. It maybe need value;
+  return (result.data.data as Map).values.first;
 }
-/// v1
-// query(QueryOptions option){
-//   return graphqlWrapper(gClient.query(option));
+
+// option(String document,dynamic args){
+//   return QueryOptions(
+//       document: document,
+//       variables: {'args': args},
+//     );
 // }
-query(String document,dynamic args){
-  return graphqlWrapper(gClient.query(option(document,args)));
-}
