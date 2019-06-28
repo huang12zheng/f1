@@ -1,9 +1,12 @@
 import 'package:common_utils/common_utils.dart';
+import 'package:f1/base_util/graphql/client.dart';
 import 'package:f1/graphql/api.dart';
 import 'package:f1/pages/passport_page/login_component/action.dart';
 import 'package:f1/pages/passport_page/menu_button_component/action.dart';
+import 'package:f1/pages/passport_page/service/index.dart';
 import 'package:f1/pages/passport_page/signup_component/action.dart';
 import 'package:f1/pages/passport_page/signup_component/state.dart';
+import 'package:f1/widget/snack_bar.dart';
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_util/graphql_util.dart';
@@ -20,67 +23,51 @@ Effect<PassportState> buildEffect() {
 
 void onSelect(Action action, Context<PassportState> ctx) async {
   final PassportState newState = ctx.state.clone();
+  /// animateToPage
   await newState.pageController.animateToPage(action.payload,
         duration: Duration(milliseconds: 500), curve: Curves.decelerate);
-  // print("warning: MenuButtonAction.onSelect has not been used.")
+  /// change state and  viewShow
   ctx.dispatch(PassportActionCreator.select(newState));
-  // ctx.dispatch(MenuButtonActionCreator.onChangeTheme(action.payload) );
   ctx.dispatch(PassportActionCreator.changeMenuTheme(action.payload) );
 }
 
 void onLogin(Action action, Context<PassportState> ctx) async {
-  String access = ctx.state.login.accessController.text;
-  String verify = ctx.state.login.verifyController.text;
-  Map<String,String> queryArg={};
-  switchAccess(access, queryArg);
-  switchVerify(verify, queryArg);
-  print(queryArg);
-  
-  var tmp = await loginAPI(queryArg);
-
-  print(tmp);
-  
+  try{
+    var tmp = await loginAPI(getQueryArg(ctx));
+    print(tmp);
+  }
+  catch (e) {
+    // errorDialog(e.message, ctx.context);
+    showInSnackBar(action.payload,e.message);
+  }
+  finally{}
 }
 
-void onSignup(Action action, Context<PassportState> ctx) async {
-  if (ctx.state.signup.passwordController.text!=ctx.state.signup.confirmPasswordController.text){
+
+
+void onCheck(Action action, Context<PassportState> ctx) async {
+  if (passwordIsSame(ctx)){
+    // TODO
     print('ps is not true');
     return;
   }
-  List<Map> args_L = switchExist(ctx.state.signup);
-  var response = await signupCheckAPI(args_L);
-  // Map args = switchSignup(ctx.state.signup);
-  
-  // print(args);
-  print(response);
+  // gClient.cache.reset();
+  if (await isExistUser(ctx)) { print("it isn't null");}
+  else ctx.dispatch(SignupActionCreator.onSignup());
 }
 
-switchExist(SignupState state){
-  List<Map> arg=[
-    {'userName': state.nameController.text,},
-    {'mobile': state.mobileController.text,},
-    // {'email':  state.emailController.text,},
-  ];
-  return arg;
+Future<bool> isExistUser(ctx) async {
+  getUser(Context<PassportState> ctx) => switchExist(ctx.state.signup);
+  var response = await signupCheckAPI(getUser(ctx));
+  return response != []; // isExist
 }
 
-switchSignup(SignupState state){
-  Map<String,String> arg={
-    'userName': state.nameController.text,
-    'mobile': state.mobileController.text,
-    'email':  state.emailController.text,
-    'password': state.passwordController.text,
-  };
-  return arg;
+
+
+
+void onSignup(Action action, Context<PassportState> ctx) async {
+  Map arg = switchSignup(ctx.state.signup);
+  var response = await signupAPI(arg);
+  // if 
 }
 
-void switchAccess(String access, Map<String, String> map) {
-  if (RegexUtil.isEmail(access)==true) {map['email']=access; return ;}
-  if (RegexUtil.isMobileExact(access)==true) {map['mobile']=access; return;}
-  { map['userName']=access; return ;}
-}
-
-void switchVerify(String verify, Map<String, String> map) {
-  if (verify.length==6 && RegExp('[0-9]+').hasMatch(verify) ) { map['SMS']=verify; return ;}
-  map['password']=verify; return;
-}

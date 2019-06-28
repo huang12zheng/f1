@@ -9,7 +9,7 @@ class LoginActionCreator {
   static Action toggleLoginObscure() {
     return const Action(LoginAction.toggleLoginObscure);
   }
-  static Action onLogin() {
-    return const Action(LoginAction.onLogin);
+  static Action onLogin(dynamic context) {
+    return Action(LoginAction.onLogin, payload: context);
   }
 }

@@ -1,11 +1,11 @@
 import 'package:f1/base_util/index.dart';
 
-loginAPI(args) {
+loginAPI(args) async {
   String loginRepositories=r'''
 query ReadRepositories($args:UserWhereInput) 
 {
   users(where:$args){
-    _id
+    id
     userName
     mobile
     avatar
@@ -31,7 +31,9 @@ query ReadRepositories($args:UserWhereInput)
   }
 }
 ''';
-  return query(loginRepositories,args);
+  var data = await query(loginRepositories,args);
+  if (data.toString() == '[]') throw new Exception('Signin is no vaild');
+  return data;
 }
 
 signupCheckAPI(List<Map> args){
@@ -39,7 +41,7 @@ signupCheckAPI(List<Map> args){
 query ReadRepositories($args:UserWhereInput) 
 {
   userORQuery(where:$args){
-    _id
+    id
   }
 }
 ''';
@@ -51,13 +53,10 @@ query ReadRepositories($args:UserWhereInput)
 
 signupAPI(args) {
   String signupRepositories=r'''
-query CheckRepositories($args:UserWhereInput) 
-{
-  users(where:$args){
-    _id
-}
+mutation signUp($arg:UserCreateInput!){
+  createUser(data: $arg){ id }
 }
 ''';
-  // return mutation(signupRepositories,args);
+  return mutation(signupRepositories,args);
 }
 

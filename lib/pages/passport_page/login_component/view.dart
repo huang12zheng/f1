@@ -71,25 +71,29 @@ Widget buildView(LoginState state, Dispatch dispatch, ViewService viewService) {
   }
   
   _loginButton(){
-    return MaterialButton(
-      highlightColor: Colors.transparent,
-      splashColor: Theme.Colors.loginGradientEnd,
-      //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-            vertical: 10.0, horizontal: 42.0),
-        child: Text(
-          "LOGIN",
-          style: TextStyle(
-              color: Colors.white,
-              fontSize: 25.0,
-              fontFamily: "WorkSansBold"),
+    return 
+    Builder( builder: (BuildContext context){
+      return MaterialButton(
+        highlightColor: Colors.transparent,
+        splashColor: Theme.Colors.loginGradientEnd,
+        //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+              vertical: 10.0, horizontal: 42.0),
+          child: Text(
+            "LOGIN",
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 25.0,
+                fontFamily: "WorkSansBold"),
+          ),
         ),
-      ),
-      onPressed: () => dispatch(LoginActionCreator.onLogin()),
-      // print('snackBar'),
-      // showInSnackBar("Login button pressed"),
-    );
+        // need scffold
+        onPressed: () => dispatch(LoginActionCreator.onLogin(context)),
+        // print('snackBar'),
+        // showInSnackBar("Login button pressed"),
+      );
+    });
   }
   main() =>Container(
       padding: EdgeInsets.only(top: 23.0),
