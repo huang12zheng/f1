@@ -28,20 +28,26 @@ void switchVerify(String verify, Map<String, String> map) {
 
 
 // -----------------------------------Signup-------------------------------
-switchExist(SignupState state){
+switchExistPattern(SignupState state){
+  String access = state.nameController.text;
+  String password = state.passwordController.text;
+  String mobile = state.mobileController.text;
+  if (access == '') throw new Exception('please input account');
+  if (password == '') throw new Exception('please input password info');
+  if (mobile == '') throw new Exception('please input mobile');
   List<Map> arg=[
     {'userName': state.nameController.text,},
     {'mobile': state.mobileController.text,},
-    // {'email':  state.emailController.text,},
+    {'email':  state.emailController.text,},
   ];
   return arg;
 }
 
-switchSignup(SignupState state){
+switchSignupPattern(SignupState state){
   Map<String,String> arg={
     'userName': state.nameController.text,
     'mobile': state.mobileController.text,
-    // 'email':  state.emailController.text,
+    'email':  state.emailController.text,
     'password': state.passwordController.text,
   };
   return arg;

@@ -23,11 +23,13 @@ mutation(String document,dynamic args){
 
 graphqlWrapper(Future<QueryResult> request)async{
   QueryResult result = await request;
-  if (result.errors != null) 
-    throw result.errors;
+  if (result.errors != null) throw new Exception(result.errors[0].message);
   if (result.data.data.toString().contains('@cache/reference')){
     // print(gClient.cache.read("5cebeafb8c5eb80009ada7ed"));
-    return result.data.values.last.map( (data) => data.data ).toList();
+    // Map
+    // List
+    if (result.data.values.last is List) return result.data.values.last.map( (data) => data.data ).toList();
+    if (result.data.values.last.data is Map) return result.data.values.last.data;
   }
   //!! would no run by runtimeType == LazyCacheMap
   // result.data.data is Map. It maybe need value;

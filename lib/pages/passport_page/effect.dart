@@ -34,40 +34,23 @@ void onSelect(Action action, Context<PassportState> ctx) async {
 void onLogin(Action action, Context<PassportState> ctx) async {
   try{
     var tmp = await loginAPI(getQueryArg(ctx));
-    print(tmp);
+    showInSnackBar(action.payload,tmp.toString());
   }
   catch (e) {
-    // errorDialog(e.message, ctx.context);
     showInSnackBar(action.payload,e.message);
   }
-  finally{}
 }
-
-
-
-void onCheck(Action action, Context<PassportState> ctx) async {
-  if (passwordIsSame(ctx)){
-    // TODO
-    print('ps is not true');
-    return;
-  }
-  // gClient.cache.reset();
-  if (await isExistUser(ctx)) { print("it isn't null");}
-  else ctx.dispatch(SignupActionCreator.onSignup());
-}
-
-Future<bool> isExistUser(ctx) async {
-  getUser(Context<PassportState> ctx) => switchExist(ctx.state.signup);
-  var response = await signupCheckAPI(getUser(ctx));
-  return response != []; // isExist
-}
-
-
-
 
 void onSignup(Action action, Context<PassportState> ctx) async {
-  Map arg = switchSignup(ctx.state.signup);
-  var response = await signupAPI(arg);
-  // if 
+  try{
+    await onCheck(ctx);
+    // create User
+    var response = await signupAPI(switchSignupPattern(ctx.state.signup));
+  }catch(e) { showInSnackBar(action.payload,e.message); }
+}
+void onCheck(Context<PassportState> ctx) async {
+  if (passwordIsSame(ctx)) throw new Exception('Please check password or repasswrod');
+    // Check Is Exist?
+  await signupCheckAPI(switchExistPattern(ctx.state.signup));
 }
 

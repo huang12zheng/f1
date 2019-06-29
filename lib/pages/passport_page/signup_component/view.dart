@@ -1,4 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -217,24 +218,28 @@ Widget buildView(SignupState state, Dispatch dispatch, ViewService viewService) 
                       stops: [0.0, 1.0],
                       tileMode: TileMode.clamp),
                 ),
-                child: MaterialButton(
-                    highlightColor: Colors.transparent,
-                    splashColor: Theme.Colors.loginGradientEnd,
-                    //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 42.0),
-                      child: Text(
-                        "SIGN UP",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25.0,
-                            fontFamily: "WorkSansBold"),
+                child:  // SignButton
+                  Builder( builder: (BuildContext context){
+                    return MaterialButton(
+                      highlightColor: Colors.transparent,
+                      splashColor: Theme.Colors.loginGradientEnd,
+                      //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 42.0),
+                        child: Text(
+                          "SIGN UP",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 25.0,
+                              fontFamily: "WorkSansBold"),
+                        ),
                       ),
-                    ),
-                    onPressed: () => dispatch(SignupActionCreator.onCheck()),
-                    // showInSnackBar("SignUp button pressed")
-                    ),
+                      onPressed: () => dispatch(SignupActionCreator.onSignup(context)),
+                      // showInSnackBar("SignUp button pressed")
+                      );
+                  }),
+                // ),
               ),
             ],
           ),

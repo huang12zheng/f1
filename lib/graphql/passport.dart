@@ -1,3 +1,4 @@
+import 'package:f1/base_util/graphql/client.dart';
 import 'package:f1/base_util/index.dart';
 
 loginAPI(args) async {
@@ -36,7 +37,7 @@ query ReadRepositories($args:UserWhereInput)
   return data;
 }
 
-signupCheckAPI(List<Map> args){
+signupCheckAPI(List<Map> args) async{
   String checkRepositories=r'''
 query ReadRepositories($args:UserWhereInput) 
 {
@@ -47,16 +48,31 @@ query ReadRepositories($args:UserWhereInput)
 ''';
 /// {"args": {"OR": [{"userName": "HZ"},{"mobile": "17682318150"}]}}
   var argT = {"OR":args};
-  return query(checkRepositories,argT);
+  gClient.cache.reset();
+  var data = await query(checkRepositories,argT);
+  if (data.toString() != '[]') 
+  {
+    print(data);
+    print(argT);
+    throw new Exception('Account Had Exist');
+  }
 }
 
 
-signupAPI(args) {
+signupAPI(args) async {
   String signupRepositories=r'''
-mutation signUp($arg:UserCreateInput!){
-  createUser(data: $arg){ id }
+mutation signUp($args:UserCreateInput!){
+  createUser(data: $args){ id }
 }
 ''';
-  return mutation(signupRepositories,args);
+  try {
+    var data = await mutation(signupRepositories,args);
+    print(data);
+    return data;
+  } catch (e) {
+    print(e.message);
+    throw new Exception("Couldn't Create User");
+  }
+
 }
 

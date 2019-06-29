@@ -15,11 +15,7 @@ void showInSnackBar(BuildContext context,String value) {
     duration: Duration(seconds: 3),
   );
 
-  // Builder(builder: (BuildContext context){
   FocusScope.of(context).requestFocus(new FocusNode());
-  // _scaffoldKey.currentState?.removeCurrentSnackBar();
-  // _scaffoldKey.currentState.showSnackBar(new SnackBar(
   Scaffold.of(context).removeCurrentSnackBar();
   Scaffold.of(context).showSnackBar(snackbar(value));
-  // });
 }

@@ -14,8 +14,8 @@ class SignupActionCreator {
     return const Action(SignupAction.toggleConfirm);
   }
 
-  static Action onSignup(){
-    return const Action(SignupAction.onSignup);
+  static Action onSignup(dynamic context){
+    return Action(SignupAction.onSignup,payload: context);
   }
   static Action onCheck(){
     return const Action(SignupAction.onCheck);
